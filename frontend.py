@@ -1,6 +1,20 @@
 from tkinter import *
 import backend
 
+
+def view_command():
+    list1.delete(0, END)
+    for row in backend.view():
+        list1.insert(END, row)
+
+
+def search_command():
+    list1.delete(0, END)
+    for row in backend.search(title_text.get(), author_text.get(),
+                              year_text.get(), isbn_text.get()):
+        list1.insert(END, row)
+
+
 window = Tk()
 
 # Labels
@@ -48,10 +62,10 @@ sb1.configure(command=list1.yview)
 
 # Buttons
 
-b1 = Button(window, text="View", width=12)
+b1 = Button(window, text="View", width=12, command=view_command)
 b1.grid(row=2, column=3)
 
-b2 = Button(window, text="Search", width=12)
+b2 = Button(window, text="Search", width=12, command=search_command)
 b2.grid(row=3, column=3)
 
 b3 = Button(window, text="Add", width=12)
