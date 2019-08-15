@@ -1,5 +1,7 @@
 from tkinter import *
-import backend
+from backend import Database
+
+database = Database("books.db")
 
 # Command methods
 
@@ -22,13 +24,13 @@ def get_selected_row(event):
 
 def view_command():
     list1.delete(0, END)
-    for row in backend.view():
+    for row in database.view():
         list1.insert(END, row)
 
 
 def search_command():
     list1.delete(0, END)
-    for row in backend.search(title_text.get(),
+    for row in database.search(title_text.get(),
                               author_text.get(),
                               year_text.get(),
                               isbn_text.get()):
@@ -36,7 +38,7 @@ def search_command():
 
 
 def add_command():
-    backend.insert(title_text.get(),
+    database.insert(title_text.get(),
                    author_text.get(),
                    year_text.get(),
                    isbn_text.get())
@@ -48,11 +50,11 @@ def add_command():
 
 
 def delete_command():
-    backend.delete(selected_tuple[0])
+    database.delete(selected_tuple[0])
 
 
 def update_command():
-    backend.update(selected_tuple[0],
+    database.update(selected_tuple[0],
                    title_text.get(),
                    author_text.get(),
                    year_text.get(),
