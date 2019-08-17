@@ -12,9 +12,8 @@ class Database:
         self.conn.commit()
 
     def insert(self, title, author, year, isbn):
-        self.cur.execute("INSERT INTO book VALUES (NULL, ?, ?, ?, ?)", (title,
-                                                                    author,
-                                                                   year, isbn))
+        self.cur.execute("INSERT INTO book VALUES (NULL, ?, ?, ?, ?)",
+                         (title, author, year, isbn))
         self.conn.commit()
 
     def view(self):
@@ -34,8 +33,9 @@ class Database:
         self.conn.commit()
 
     def update(self, id, title, author, year, isbn):
-        self.cur.execute("UPDATE book SET title = ?, author = ?, year = ?, isbn = ? "
-                    "WHERE id = ?", (title, author, year, isbn, id))
+        self.cur.execute("UPDATE book SET title = ?, author = ?, year = ?,"
+                         "isbn = ? WHERE id = ?", (title, author, year,
+                                                   isbn, id))
         self.conn.commit()
 
 
