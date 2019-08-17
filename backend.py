@@ -38,6 +38,9 @@ class Database:
                                                    isbn, id))
         self.conn.commit()
 
+    def __del__(self):
+        self.conn.close()
+
 
 # connect()
 # insert("Test three", "Jdawg Saturno", 1980, 12341234)
